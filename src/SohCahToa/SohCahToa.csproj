@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <Authors>Growler</Authors>
+    <Copyright>2023</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>Trig Trigonometry Triangles SohCahToa Triangle</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Simplifies performing Trig calculations by providing descriptive function names</Description>
+	<RepositoryUrl>https://github.com/growlerdev/SohCahToa</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+	
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\SohCahToa.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+	    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\assets\docimage.png" Pack="true" PackagePath="\assets\" />
+	</ItemGroup>
+</Project>
