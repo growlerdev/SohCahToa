@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Growler</Authors>
     <Copyright>2023</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

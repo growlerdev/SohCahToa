@@ -2,7 +2,7 @@
 
 [![NuGet version (iAutomateDesign.AutodeskAppStore)](https://buildstats.info/nuget/SohCahToa)](https://www.nuget.org/packages/SohCahToa)
 
-Simplifies performing Trig calculations by providing descriptive function names. No longer have to remember whether Sin, Cos, or Tan need to be used to get the value you are needing.
+Simplifies performing Trig calculations by providing descriptive function names. No more having to remember whether Sin, Cos, or Tan need to be used to get the value you are needing.
 
 ## How to Use
 
@@ -47,12 +47,3 @@ Alternatively, there are functions that reference the values shown in the image 
 * Angles are named with upper case double letters (AA, BB)
 
 The same calculated from above, calculating the hypotenuse using the Rise and Run values would be `c_ab()`
-
-#### Using an Angle as an Input
-
-If an angle is used as an input for a calculation, the angle is always the first input.
-
-For Example:
-
-To calculate the hypotenuse using the Primary Angle and the Run would be `c_AAb`
-
