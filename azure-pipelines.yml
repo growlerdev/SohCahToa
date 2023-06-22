@@ -39,7 +39,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: 'src/**/*.csproj'
+    packagesToPack: 'src/$(Build.DefinitionName)/*.csproj'
     packDirectory: 'artifacts'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'GITVERSION_NuGetVersion'
