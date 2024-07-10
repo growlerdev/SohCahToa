@@ -1,49 +1,84 @@
 # SohCahToa
 
-[![NuGet version (iAutomateDesign.AutodeskAppStore)](https://buildstats.info/nuget/SohCahToa)](https://www.nuget.org/packages/SohCahToa)
+[![NuGet version (SohCahToa)](https://buildstats.info/nuget/SohCahToa)](https://www.nuget.org/packages/SohCahToa)
 
-Simplifies performing Trig calculations by providing descriptive function names. No more having to remember whether Sin, Cos, or Tan need to be used to get the value you are needing.
+`SohCahToa` is a powerful C# library designed to simplify trigonometric calculations, making it an essential tool for engineering, educational software, and any application dealing with geometric data. With its focus on ease of use and precision, `SohCahToa` helps developers perform complex trigonometric calculations with minimal effort.
 
-## How to Use
+## Features
 
-* Add a using statement for `SohCahToa`
-* Call static functions within the `Trig` class
+- **High Precision Calculations**: Utilize double precision (`Trig`) or single precision (`TrigF`) for trigonometric operations.
+- **Static Methods**: Direct access to trigonometric calculations without needing to instantiate classes.
+- **Comprehensive Coverage**: Methods for calculating side lengths, primary and complimentary angles in right triangles.
+- **Ease of Use**: Intuitive method naming convention for quick understanding and implementation.
 
+## Installation
 
-```csharp
-var run = 10;
-var rise = 15;
-var hypotenuse = Trig.Hypotenuse_RiseRun(rise, run);
+To integrate `SohCahToa` into your project, use the following NuGet command:
+
+```bash
+Install-Package SohCahToa
 ```
 
+## Quick Start
 
+Calculate the length of the opposite side of a right triangle given the adjacent side and the angle:
 
-### Triangle Side/Angle Nomenclature:
+```csharp
+double run = 5;
+double primaryAngle = 30;
+double rise = Trig.Rise_RunPrimaryAngle(run, primaryAngle);
+Console.WriteLine($"Rise: {rise}");
+```
 
-![Triangle Labels](https://i.imgur.com/EUrjY2m.png)
+## API Overview
 
-* Hypotenuse = c
-* Run = b
-* Rise = a
-* Primary Angle = AA
-* Complimentary Angle = BB
+### `Trig` Class
 
-**Angles are in degrees**
+- **Double Precision**: For applications requiring high accuracy.
+- Methods include `Rise_RunPrimaryAngle`, `PrimaryAngle_RiseRun`, `ComplimentaryAngle_PrimaryAngle`, etc.
 
-### Function names follow the following structure:
+### `TrigF` Class
 
-**[Value to be Calculated]_[Input 1][Input 2]**
+- **Single Precision**: Optimized for performance and memory efficiency.
+- Methods mirror those of `Trig` but use `float` types, e.g., `Rise_RunPrimaryAngle(float run, float primaryAngle)`.
 
-For Example:
+### Method Naming Convention
 
-The function to use for calculating the hypotenuse of a triangle using the Rise and Run values would be `Hypotenuse_RiseRun()`
+- **Descriptive Prefix**: The primary output or focus of the method (e.g., `Rise`, `Run`, `PrimaryAngle`).
+- **Underscore Separator**: Enhances readability and method parsing.
+- **Input Parameters**: Inputs or known quantities used for calculation.
 
-### Short Method Naming:
+## Examples
 
-Alternatively, there are functions that reference the values shown in the image above that could be used instead of using the descriptive names.
+### Calculate Side Lengths
 
-* Sides are named with lower case letters (a,b,c)
+```csharp
+double run = 5;
+double primaryAngle = 30;
+double rise = Trig.Rise_RunPrimaryAngle(run, primaryAngle);
+```
 
-* Angles are named with upper case double letters (AA, BB)
+### Calculate Angles
 
-The same calculated from above, calculating the hypotenuse using the Rise and Run values would be `c_ab()`
+```csharp
+double rise = 3;
+double run = 4;
+double primaryAngle = Trig.PrimaryAngle_RiseRun(rise, run);
+```
+
+### Comprehensive Calculations
+
+```csharp
+double run = 5;
+double primaryAngle = 30;
+double rise = Trig.Rise_RunPrimaryAngle(run, primaryAngle);
+double complimentaryAngle = Trig.ComplimentaryAngle_PrimaryAngle(primaryAngle);
+```
+
+## Contributing
+
+Contributions are welcome! Please submit pull requests or open issues to discuss proposed changes or report bugs.
+
+## License
+
+`SohCahToa` is released under the MIT License. See the LICENSE file in the repository for more details.
