@@ -2,7 +2,7 @@
 
 [![NuGet version (SohCahToa)](https://buildstats.info/nuget/SohCahToa)](https://www.nuget.org/packages/SohCahToa)
 
-`SohCahToa` is a powerful C# library designed to simplify trigonometric calculations, making it an essential tool for engineering, educational software, and any application dealing with geometric data. With its focus on ease of use and precision, `SohCahToa` helps developers perform complex trigonometric calculations with minimal effort.
+`SohCahToa` is a C# library designed to simplify trigonometric calculations with a focus on ease of use and precision.
 
 ## Features
 

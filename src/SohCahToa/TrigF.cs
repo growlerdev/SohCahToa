@@ -2,6 +2,8 @@ using System;
 
 namespace SohCahToa
 {
+    #if NETSTANDARD2_1_OR_GREATER
+    
     /// <summary>
     /// Provides methods for solving trigonometry problems related to right triangles.
     /// Includes calculations for sides, angles, and hypotenuse based on given parameters.
@@ -279,4 +281,6 @@ namespace SohCahToa
             return angle * (180 / MathF.PI);
         }
     }
+    
+    #endif
 }
