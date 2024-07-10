@@ -38,14 +38,11 @@ jobs:
     - name: NuGet restore
       run: nuget restore
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Build Solution
-      run:  msbuild *.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+    - name: Build DotNet
+      run: dotnet build -c Release           
 
     - name: Pack Projects
-      run: dotnet pack src/**/*.csproj --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
+      run: dotnet pack --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
 
     - name: Publish Build Artifacts
       uses: actions/upload-artifact@v2
