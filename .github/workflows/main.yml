@@ -6,6 +6,7 @@ on:
       - release/*
       - develop
       - main
+      - actions
 
 jobs:
   build:
