@@ -6,257 +6,257 @@ namespace SohCahToa
     /// Provides methods for solving trigonometry problems related to right triangles.
     /// Includes calculations for sides, angles, and hypotenuse based on given parameters.
     /// </summary>
-    public static class Trig
+    public static class TrigF
     {
         /// <summary>
-        /// Calculates the length of the side opposite to the primary angle (rise) given the adjacent side (run) and the primary angle.
+        /// Calculates the length of the side opposite to the primary angle (rise) given the length of the side adjacent to the primary angle (run) and the primary angle in degrees.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_RunPrimaryAngle(double run, double primaryAngle)
+        public static float Rise_RunPrimaryAngle(float run, float primaryAngle)
         {
-            return run * Math.Tan(ToRadians(primaryAngle));
+            return run * MathF.Tan(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the side opposite to the primary angle (rise) given the hypotenuse and the primary angle.
+        /// Calculates the length of the side opposite to the primary angle (rise) given the length of the hypotenuse and the primary angle in degrees.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_HypotenusePrimaryAngle(double hypotenuse, double primaryAngle)
+        public static float Rise_HypotenusePrimaryAngle(float hypotenuse, float primaryAngle)
         {
-            return hypotenuse * Math.Sin(ToRadians(primaryAngle));
+            return hypotenuse * MathF.Sin(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the side opposite to the complimentary angle (rise) given the adjacent side (run) and the complimentary angle.
+        /// Calculates the length of the side opposite to the complimentary angle (rise) given the length of the side adjacent to the complimentary angle (run) and the complimentary angle in degrees.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_RunComplimentaryAngle(double run, double complimentaryAngle)
+        public static float Rise_RunComplimentaryAngle(float run, float complimentaryAngle)
         {
-            return run / Math.Tan(ToRadians(complimentaryAngle));
+            return run / MathF.Tan(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the side opposite to the complimentary angle (rise) given the hypotenuse and the complimentary angle.
+        /// Calculates the length of the side opposite to the complimentary angle (rise) given the length of the hypotenuse and the complimentary angle in degrees.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_HypotenuseComplimentaryAngle(double hypotenuse, double complimentaryAngle)
+        public static float Rise_HypotenuseComplimentaryAngle(float hypotenuse, float complimentaryAngle)
         {
-            return hypotenuse * Math.Cos(ToRadians(complimentaryAngle));
+            return hypotenuse * MathF.Cos(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the side opposite to the primary angle (rise) given the adjacent side (run) and the hypotenuse.
+        /// Calculates the length of the side opposite to the primary angle (rise) given the length of the side adjacent to the primary angle (run) and the length of the hypotenuse.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_RunHypotenuse(double run, double hypotenuse)
+        public static float Rise_RunHypotenuse(float run, float hypotenuse)
         {
-            return Math.Sqrt(Math.Pow(hypotenuse, 2) - Math.Pow(run, 2));
+            return MathF.Sqrt(MathF.Pow(hypotenuse, 2) - MathF.Pow(run, 2));
         }
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the primary angle.
+        /// Calculates the length of the side adjacent to the primary angle (run) given the length of the side opposite to the primary angle (rise) and the primary angle in degrees.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_RisePrimaryAngle(double rise, double primaryAngle)
+        public static float Run_RisePrimaryAngle(float rise, float primaryAngle)
         {
-            return rise / Math.Tan(ToRadians(primaryAngle));
+            return rise / MathF.Tan(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the hypotenuse and the primary angle.
+        /// Calculates the length of the side adjacent to the primary angle (run) given the length of the hypotenuse and the primary angle in degrees.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_HypotenusePrimaryAngle(double hypotenuse, double primaryAngle)
+        public static float Run_HypotenusePrimaryAngle(float hypotenuse, float primaryAngle)
         {
-            return hypotenuse * Math.Cos(ToRadians(primaryAngle));
+            return hypotenuse * MathF.Cos(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the complimentary angle.
+        /// Calculates the length of the side adjacent to the complimentary angle (run) given the length of the side opposite to the complimentary angle (rise) and the complimentary angle in degrees.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_RiseComplimentaryAngle(double rise, double complimentaryAngle)
+        public static float Run_RiseComplimentaryAngle(float rise, float complimentaryAngle)
         {
-            return rise * Math.Tan(ToRadians(complimentaryAngle));
+            return rise * MathF.Tan(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the hypotenuse and the complimentary angle.
+        /// Calculates the length of the side adjacent to the complimentary angle (run) given the length of the hypotenuse and the complimentary angle in degrees.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_HypotenuseComplimentaryAngle(double hypotenuse, double complimentaryAngle)
+        public static float Run_HypotenuseComplimentaryAngle(float hypotenuse, float complimentaryAngle)
         {
-            return hypotenuse * Math.Sin(ToRadians(complimentaryAngle));
+            return hypotenuse * MathF.Sin(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the hypotenuse.
+        /// Calculates the length of the side adjacent to the primary angle (run) given the length of the side opposite to the primary angle (rise) and the length of the hypotenuse.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_RiseHypotenuse(double rise, double hypotenuse)
+        public static float Run_RiseHypotenuse(float rise, float hypotenuse)
         {
-            return Math.Sqrt(Math.Pow(hypotenuse, 2) - Math.Pow(rise, 2));
+            return MathF.Sqrt(MathF.Pow(hypotenuse, 2) - MathF.Pow(rise, 2));
         }
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the opposite side (rise) and the primary angle.
+        /// Calculates the length of the hypotenuse given the length of the side opposite to the primary angle (rise) and the primary angle in degrees.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RisePrimaryAngle(double rise, double primaryAngle)
+        public static float Hypotenuse_RisePrimaryAngle(float rise, float primaryAngle)
         {
-            return rise / Math.Sin(ToRadians(primaryAngle));
+            return rise / MathF.Sin(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the adjacent side (run) and the primary angle.
+        /// Calculates the length of the hypotenuse given the length of the side adjacent to the primary angle (run) and the primary angle in degrees.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RunPrimaryAngle(double run, double primaryAngle)
+        public static float Hypotenuse_RunPrimaryAngle(float run, float primaryAngle)
         {
-            return run / Math.Cos(ToRadians(primaryAngle));
+            return run / MathF.Cos(ToRadians(primaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the opposite side (rise) and the complimentary angle.
+        /// Calculates the length of the hypotenuse given the length of the side opposite to the complimentary angle (rise) and the complimentary angle in degrees.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RiseComplimentaryAngle(double rise, double complimentaryAngle)
+        public static float Hypotenuse_RiseComplimentaryAngle(float rise, float complimentaryAngle)
         {
-            return rise / Math.Cos(ToRadians(complimentaryAngle));
+            return rise / MathF.Cos(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the adjacent side (run) and the complimentary angle.
+        /// Calculates the length of the hypotenuse given the length of the side adjacent to the complimentary angle (run) and the complimentary angle in degrees.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RunComplimentaryAngle(double run, double complimentaryAngle)
+        public static float Hypotenuse_RunComplimentaryAngle(float run, float complimentaryAngle)
         {
-            return run / Math.Sin(ToRadians(complimentaryAngle));
+            return run / MathF.Sin(ToRadians(complimentaryAngle));
         }
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the lengths of the other two sides.
+        /// Calculates the length of the hypotenuse given the lengths of the other two sides (rise and run).
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RiseRun(double rise, double run)
+        public static float Hypotenuse_RiseRun(float rise, float run)
         {
-            return Math.Sqrt(Math.Pow(rise, 2) + Math.Pow(run, 2));
+            return MathF.Sqrt(MathF.Pow(rise, 2) + MathF.Pow(run, 2));
         }
 
         /// <summary>
-        /// Calculates the primary angle given the complimentary angle.
+        /// Calculates the primary angle in degrees given the complimentary angle in degrees.
         /// </summary>
         /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
         /// <returns>The primary angle in degrees.</returns>
-        public static double PrimaryAngle_ComplimentaryAngle(double complimentaryAngle)
+        public static float PrimaryAngle_ComplimentaryAngle(float complimentaryAngle)
         {
             return 90 - complimentaryAngle;
         }
 
         /// <summary>
-        /// Calculates the primary angle given the lengths of the opposite side (rise) and the adjacent side (run).
+        /// Calculates the primary angle in degrees given the lengths of the opposite side (rise) and the adjacent side (run).
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <returns>The primary angle in degrees.</returns>
-        public static double PrimaryAngle_RiseRun(double rise, double run)
+        public static float PrimaryAngle_RiseRun(float rise, float run)
         {
-            return ToDegrees(Math.Atan(rise / run));
+            return ToDegrees(MathF.Atan(rise / run));
         }
 
         /// <summary>
-        /// Calculates the primary angle given the length of the opposite side (rise) and the hypotenuse.
+        /// Calculates the primary angle in degrees given the length of the opposite side (rise) and the hypotenuse.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the primary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The primary angle in degrees.</returns>
-        public static double PrimaryAngle_RiseHypotenuse(double rise, double hypotenuse)
+        public static float PrimaryAngle_RiseHypotenuse(float rise, float hypotenuse)
         {
-            return ToDegrees(Math.Asin(rise / hypotenuse));
+            return ToDegrees(MathF.Asin(rise / hypotenuse));
         }
 
         /// <summary>
-        /// Calculates the primary angle given the length of the adjacent side (run) and the hypotenuse.
+        /// Calculates the primary angle in degrees given the length of the adjacent side (run) and the hypotenuse.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the primary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The primary angle in degrees.</returns>
-        public static double PrimaryAngle_RunHypotenuse(double run, double hypotenuse)
+        public static float PrimaryAngle_RunHypotenuse(float run, float hypotenuse)
         {
-            return ToDegrees(Math.Acos(run / hypotenuse));
+            return ToDegrees(MathF.Acos(run / hypotenuse));
         }
 
         /// <summary>
-        /// Calculates the complimentary angle given the primary angle.
+        /// Calculates the complimentary angle in degrees given the primary angle in degrees.
         /// </summary>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
         /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_PrimaryAngle(double primaryAngle)
+        public static float ComplimentaryAngle_PrimaryAngle(float primaryAngle)
         {
             return 90 - primaryAngle;
         }
 
         /// <summary>
-        /// Calculates the complimentary angle given the lengths of the opposite side (rise) and the adjacent side (run).
+        /// Calculates the complimentary angle in degrees given the lengths of the opposite side (rise) and the adjacent side (run).
         /// </summary>
         /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
         /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
         /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RiseRun(double rise, double run)
+        public static float ComplimentaryAngle_RiseRun(float rise, float run)
         {
-            return ToDegrees(Math.Atan(run / rise));
+            return ToDegrees(MathF.Atan(run / rise));
         }
 
         /// <summary>
-        /// Calculates the complimentary angle given the length of the opposite side (rise) and the hypotenuse.
+        /// Calculates the complimentary angle in degrees given the length of the opposite side (rise) and the hypotenuse.
         /// </summary>
         /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RiseHypotenuse(double rise, double hypotenuse)
+        public static float ComplimentaryAngle_RiseHypotenuse(float rise, float hypotenuse)
         {
-            return ToDegrees(Math.Acos(rise / hypotenuse));
+            return ToDegrees(MathF.Acos(rise / hypotenuse));
         }
 
         /// <summary>
-        /// Calculates the complimentary angle given the length of the adjacent side (run) and the hypotenuse.
+        /// Calculates the complimentary angle in degrees given the length of the adjacent side (run) and the hypotenuse.
         /// </summary>
         /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
         /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RunHypotenuse(double run, double hypotenuse)
+        public static float ComplimentaryAngle_RunHypotenuse(float run, float hypotenuse)
         {
-            return ToDegrees(Math.Asin(run / hypotenuse));
+            return ToDegrees(MathF.Asin(run / hypotenuse));
         }
 
         /// <summary>
@@ -264,9 +264,9 @@ namespace SohCahToa
         /// </summary>
         /// <param name="angle">The angle in degrees.</param>
         /// <returns>The angle in radians.</returns>
-        private static double ToRadians(double angle)
+        private static float ToRadians(float angle)
         {
-            return angle * (Math.PI / 180);
+            return angle * (MathF.PI / 180);
         }
 
         /// <summary>
@@ -274,9 +274,9 @@ namespace SohCahToa
         /// </summary>
         /// <param name="angle">The angle in radians.</param>
         /// <returns>The angle in degrees.</returns>
-        private static double ToDegrees(double angle)
+        private static float ToDegrees(float angle)
         {
-            return angle * (180 / Math.PI);
+            return angle * (180 / MathF.PI);
         }
     }
 }
