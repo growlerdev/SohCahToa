@@ -1,0 +1,45 @@
+name: $(GITVERSION_SemVer)
+
+on:
+  push:
+    branches:
+      - release/*
+      - develop
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Setup GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.10
+      with:
+        versionSpec: '5.x'
+
+    - name: Execute GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.10
+
+    - name: NuGet restore
+      run: nuget restore
+
+    - name: Build Solution
+      run: msbuild **/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+
+    - name: Pack Projects
+      run: dotnet pack src/**/*.csproj --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
+
+    - name: Publish Build Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: drop
+        path: ./artifacts
