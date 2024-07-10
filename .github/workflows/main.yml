@@ -48,3 +48,10 @@ jobs:
   Deploy:
     needs: Build
     runs-on: windows-latest
+
+    steps:
+    - name: Deploy to GitHub Packages
+
+    - name: Deploy to NuGet.org
+
+    - name: Tag Repo
