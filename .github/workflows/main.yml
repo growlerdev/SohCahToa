@@ -51,7 +51,10 @@ jobs:
 
     steps:
     - name: Deploy to GitHub Packages
+      run: dir
 
     - name: Deploy to NuGet.org
+      run: dir
 
     - name: Tag Repo
+      run: dir
