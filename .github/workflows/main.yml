@@ -29,6 +29,9 @@ jobs:
       id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.10
 
+    - name: List directory contents
+      run: dir /s
+
     - name: NuGet restore
       run: nuget restore
 
@@ -36,7 +39,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build Solution
-      run: msbuild **/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+      run: msbuild '**/*.sln' /p:Configuration=Release /p:Platform="x64" /t:Rebuild
 
     - name: Pack Projects
       run: dotnet pack src/**/*.csproj --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
