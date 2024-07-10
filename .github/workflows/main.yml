@@ -6,6 +6,7 @@ on:
       - release/*
       - develop
       - main
+  workflow_dispatch:
 
 jobs:
   set-gitversion:
@@ -33,8 +34,9 @@ jobs:
         run: echo "::set-output name=gitversion::${{ steps.get-version.outputs.semver }}"
         
   build:
+    needs: set-gitversion
     name: Build and Deploy - ${{ github.event.inputs.gitversion }}
-    runs-on: windows-latest
+    runs-on: windows-latest    
 
     steps:
     - name: Checkout code
@@ -48,14 +50,14 @@ jobs:
     # - name: NuGet restore
     #   run: nuget restore
     
-    - name: Setup GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.10
-      with:
-        versionSpec: '5.x'
+    # - name: Setup GitVersion
+    #   uses: gittools/actions/gitversion/setup@v0.9.10
+    #   with:
+    #     versionSpec: '5.x'
 
-    - name: Execute GitVersion
-      id: gitversion
-      uses: gittools/actions/gitversion/execute@v0.9.10
+    # - name: Execute GitVersion
+    #   id: gitversion
+    #   uses: gittools/actions/gitversion/execute@v0.9.10
 
     - name: Build DotNet
       run: dotnet build -c Release           
