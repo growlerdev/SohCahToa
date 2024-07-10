@@ -29,8 +29,11 @@ jobs:
       id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.10
 
-    - name: List directory contents
-      run: dir /s
+    - name: List root directory contents
+      run: dir
+
+    - name: List src directory contents (if exists)
+      run: dir src
 
     - name: NuGet restore
       run: nuget restore
@@ -39,7 +42,14 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build Solution
-      run: msbuild '**/*.sln' /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+      run: |
+        if (Test-Path **/*.sln) {
+          msbuild **/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+        } elseif (Test-Path src/**/*.sln) {
+          msbuild src/**/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
+        } else {
+          Write-Error "No solution file found"
+        }
 
     - name: Pack Projects
       run: dotnet pack src/**/*.csproj --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
