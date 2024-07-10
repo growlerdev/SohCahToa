@@ -42,14 +42,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build Solution
-      run: |
-        if (Test-Path **/*.sln) {
-          msbuild **/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
-        } elseif (Test-Path src/**/*.sln) {
-          msbuild src/**/*.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
-        } else {
-          Write-Error "No solution file found"
-        }
+      run:  msbuild *.sln /p:Configuration=Release /p:Platform="x64" /t:Rebuild
 
     - name: Pack Projects
       run: dotnet pack src/**/*.csproj --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
