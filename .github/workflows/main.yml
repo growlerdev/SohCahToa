@@ -49,6 +49,10 @@ jobs:
     needs: Build
     runs-on: windows-latest
 
+    env:
+      GROWLER_PACKAGES_JSON: ${{ secrets.GROWLER_PACKAGES_JSON }}
+      GROWLER_GITHUB_PAT: ${{ secrets.GROWLER_GITHUB_PAT }}
+
     steps:
 
     - name: Download a Build Artifact
@@ -71,10 +75,7 @@ jobs:
           
 
     
-    - name: Deploy to GitHub Packages
-      env:
-          GROWLER_PACKAGES_JSON: ${{ secrets.GROWLER_PACKAGES_JSON }}
-          GROWLER_GITHUB_PAT: ${{ secrets.GROWLER_GITHUB_PAT }}
+    - name: Deploy to GitHub Packages      
       run: dotnet nuget push "artifacts\*.nupkg"  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
 
     - name: Deploy to NuGet.org
