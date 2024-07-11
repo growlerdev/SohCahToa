@@ -57,10 +57,7 @@ jobs:
   Deploy_GitHub_Packages:
     needs: Build
     runs-on: windows-latest
-
-    outputs:
-      gitversion_semver: ${{ needs.Build.outputs.gitversion_semver }}
-
+    
     steps:
 
     - name: Download a Build Artifact
@@ -90,9 +87,12 @@ jobs:
         name: nuget
         path: ./artifacts          
           
-  Create_Release:
-    needs: Deploy_GitHub_Packages
+  Tag_Repo:
+    needs: Build
     runs-on: windows-latest
+
+    outputs:
+      gitversion_semver: ${{ needs.Build.outputs.gitversion_semver }}
 
     steps:
 
@@ -107,6 +107,15 @@ jobs:
           # Github Token
           token: ${{ secrets.GHUB_PAT }}
           # Version (e.g. v0.1.0)
-          version: ${{ needs.Deploy_GitHub_Packages.outputs.gitversion_semver }}
+          version: ${{ needs.Build.outputs.gitversion_semver }}
           # Tag message
-          message: ${{ needs.Deploy_GitHub_Packages.outputs.gitversion_semver }}
+          message: ${{ needs.Build.outputs.gitversion_semver }}
+
+  Create_Release:
+    needs: Tag_Repo
+    runs-on: windows-latest
+
+    steps:
+    
+    - name: Display Version number
+      run: echo "version ${{ needs.Tag_Repo.outputs.gitversion_semver }}"
