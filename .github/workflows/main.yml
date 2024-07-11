@@ -47,13 +47,32 @@ jobs:
         retention-days: 1
         overwrite: true          
         
-  Deploy:
+  Deploy_GitHub_Packages:
     needs: Build
     runs-on: windows-latest
 
-    # env:
-    #   GROWLER_PACKAGES_JSON: ${{ secrets.GROWLER_PACKAGES_JSON }}
-    #   GROWLER_GITHUB_PAT: ${{ secrets.GROWLER_GITHUB_PAT }}
+    steps:
+
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+        name: nuget
+        path: ./artifacts
+
+    - name: Set NuGet Package Filename
+      id: set_package_filename
+      run: |
+        # Assuming there is only one .nupkg file in artifacts directory
+        PACKAGE_PATH=$(find ./artifacts -name "*.nupkg")
+        PACKAGE_FILENAME=$(basename "$PACKAGE_PATH")
+        echo "::set-output name=package_filename::$PACKAGE_FILENAME"
+
+    - name: Deploy to GitHub Packages      
+      run: dotnet nuget push ./artifacts/${{ steps.set_package_filename.outputs.package_filename }}  --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+
+  Deploy_NuGet-org:
+    needs: Build
+    runs-on: windows-latest
 
     steps:
 
@@ -63,20 +82,23 @@ jobs:
         name: nuget
         path: ./artifacts          
           
-    - name: show files
-      run: dir
+    # - name: show files
+    #   run: dir
 
-    - name: show artifacts
-      run: dir artifacts
+    # - name: show artifacts
+    #   run: dir artifacts
 
-    - name: show packages json
-      run: echo ${{ secrets.GROWLER_PACKAGES_JSON }}
+    # - name: Set NuGet Package Filename
+    #   id: set_package_filename
+    #   run: |
+    #     # Assuming there is only one .nupkg file in artifacts directory
+    #     PACKAGE_PATH=$(find ./artifacts -name "*.nupkg")
+    #     PACKAGE_FILENAME=$(basename "$PACKAGE_PATH")
+    #     echo "::set-output name=package_filename::$PACKAGE_FILENAME"
+
+    # - name: show packages json
+    #   run: echo ${{ secrets.GROWLER_PACKAGES_JSON }}
     
-    - name: Deploy to GitHub Packages      
-      run: dotnet nuget push ./artifacts/*.nupkg  --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+    # - name: Deploy to GitHub Packages      
+    #   run: dotnet nuget push ./artifacts/${{ steps.set_package_filename.outputs.package_filename }}  --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
 
-    - name: Deploy to NuGet.org
-      run: dir
-
-    - name: Tag Repo
-      run: dir
