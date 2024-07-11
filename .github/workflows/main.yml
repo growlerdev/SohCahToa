@@ -59,16 +59,13 @@ jobs:
         name: nuget
         path: ./artifacts
 
-    - name: Set NuGet Package Filename
-      id: set_package_filename
+    - name: Push NuGet Packages
       run: |
-        # Assuming there is only one .nupkg file in artifacts directory
-        PACKAGE_PATH=$(find ./artifacts -name "*.nupkg")
-        PACKAGE_FILENAME=$(basename "$PACKAGE_PATH")
-        echo "::set-output name=package_filename::$PACKAGE_FILENAME"
-
-    - name: Deploy to GitHub Packages      
-      run: dotnet nuget push ./artifacts/${{ steps.set_package_filename.outputs.package_filename }}  --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+        # Find all .nupkg files in artifacts directory
+        for PACKAGE_FILE in $(find ./artifacts -name "*.nupkg"); do
+          echo "Pushing $PACKAGE_FILE"
+          dotnet nuget push $PACKAGE_FILE --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+        done
 
   Deploy_NuGet-org:
     needs: Build
