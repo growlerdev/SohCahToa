@@ -45,6 +45,8 @@ jobs:
       with:
         name: drop
         path: ./artifacts/*.nupkg
+        retention-days: 1
+        overwrite: true
         
   Deploy:
     needs: Build
@@ -58,18 +60,18 @@ jobs:
 
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.1.8
-      with:
+      # with:
         # name: drop
-        path: ./artifacts
+        # path: ./artifacts
           
     - name: show files
       run: dir
 
-    - name: show artifacts
-      run: dir artifacts
+    # - name: show artifacts
+    #   run: dir artifacts
     
     - name: Deploy to GitHub Packages      
-      run: dotnet nuget push ./artifacts/*.nupkg  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
+      run: dotnet nuget push ./*.nupkg  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
 
     - name: Deploy to NuGet.org
       run: dir
