@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
 
     outputs:
-      gitversion_semer: ${{ steps.gitversion.outputs.semver }}
+      gitversion_semver: ${{ steps.gitversion.outputs.semver }}
       gitversion_nugetversion: ${{ steps.gitversion.outputs.nugetversion }}
 
     steps:
