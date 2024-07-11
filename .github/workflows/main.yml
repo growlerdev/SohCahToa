@@ -105,7 +105,7 @@ jobs:
         uses: negz/create-tag@v1
         with:
           # Github Token
-          # token: 
+          token: ${{ secrets.GHUB_PAT }}
           # Version (e.g. v0.1.0)
           version: ${{ needs.Deploy_GitHub_Packages.outputs.gitversion_semver }}
           # Tag message
