@@ -54,45 +54,45 @@ jobs:
     - name: Echo GitVersion SemVer
       run: echo "GitVersion SemVer is ${{ steps.gitversion.outputs.semver }}"
         
-  Deploy_GitHub_Packages:
-    needs: Build
-    runs-on: windows-latest
+  # Deploy_GitHub_Packages:
+  #   needs: Build
+  #   runs-on: windows-latest
     
-    steps:
+  #   steps:
 
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v4.1.8
-      with:
-        name: nuget
-        path: ./artifacts
+  #   - name: Download a Build Artifact
+  #     uses: actions/download-artifact@v4.1.8
+  #     with:
+  #       name: nuget
+  #       path: ./artifacts
 
-    - name: Push NuGet Packages
-      shell: bash
-      run: |
-        shopt -s globstar
-        for PACKAGE_FILE in ./artifacts/*.nupkg; do
-          echo "Pushing $PACKAGE_FILE"
-          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
-        done
+  #   - name: Push NuGet Packages
+  #     shell: bash
+  #     run: |
+  #       shopt -s globstar
+  #       for PACKAGE_FILE in ./artifacts/*.nupkg; do
+  #         echo "Pushing $PACKAGE_FILE"
+  #         dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+  #       done
 
-  Deploy_NuGet-org:
-    needs: Build
-    runs-on: windows-latest
+  # Deploy_NuGet-org:
+  #   needs: Build
+  #   runs-on: windows-latest
 
-    steps:
+  #   steps:
 
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v4.1.8
-      with:
-        name: nuget
-        path: ./artifacts
+  #   - name: Download a Build Artifact
+  #     uses: actions/download-artifact@v4.1.8
+  #     with:
+  #       name: nuget
+  #       path: ./artifacts
 
   Prepare_Release:
     needs: Build
     runs-on: windows-latest
     outputs:
       commit_messages: ${{ steps.commit_messages.outputs.messages }}
-      gitversion_semver: ${{ steps.gitversion.outputs.semver }}
+      gitversion_semver: ${{ steps.Build.gitversion.outputs.semver }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.7
