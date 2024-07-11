@@ -59,7 +59,7 @@ jobs:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.1.8
       with:
-        name: drop
+        # name: drop
         path: ./artifacts
           
     - name: show files
