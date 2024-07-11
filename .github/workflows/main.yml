@@ -59,7 +59,7 @@ jobs:
     runs-on: windows-latest
 
     outputs:
-      gitversion_semver: ${{ needs.Build.gitversion.outputs.semver }}
+      gitversion_semver: ${{ needs.Build.outputs.gitversion_semver }}
 
     steps:
 
