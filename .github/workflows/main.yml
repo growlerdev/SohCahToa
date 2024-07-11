@@ -66,8 +66,11 @@ jobs:
     - name: show files
       run: dir
 
-    # - name: show artifacts
-    #   run: dir artifacts
+    - name: show artifacts
+      run: dir artifacts
+
+    - name: show packages json
+      run: echo $GROWLER_PACKAGES_JSON
     
     - name: Deploy to GitHub Packages      
       run: dotnet nuget push ./artifacts/*.nupkg  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
