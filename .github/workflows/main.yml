@@ -91,7 +91,7 @@ jobs:
     steps:
 
       - name: Display Version number
-        run: echo "version ${{ needs.build.outputs.gitversion_semver }}"
+        run: echo "version ${{ needs.Build.outputs.gitversion_semver }}"
 
       - name: Create Tag
         # You may pin to the exact commit or the version.
@@ -101,6 +101,6 @@ jobs:
           # Github Token
           # token: 
           # Version (e.g. v0.1.0)
-          version: ${{ needs.build.outputs.gitversion_semver }}
+          version: ${{ needs.Build.outputs.gitversion_semver }}
           # Tag message
-          message: ${{ needs.build.outputs.gitversion_semver }}
+          message: ${{ needs.Build.outputs.gitversion_semver }}
