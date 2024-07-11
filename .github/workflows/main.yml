@@ -123,12 +123,12 @@ jobs:
       - name: Display Version number
         run: echo "version ${{ needs.Build.outputs.gitversion_semver }}"
 
-      # - name: Create Tag
-      #   uses: negz/create-tag@v1
-      #   with:
-      #     token: ${{ secrets.GHUB_PAT }}
-      #     version: ${{ needs.Build.outputs.gitversion_semver }}
-      #     message: ${{ needs.Build.outputs.gitversion_semver }}
+      - name: Create Tag
+        uses: negz/create-tag@v1
+        with:
+          token: ${{ secrets.GHUB_PAT }}
+          version: ${{ needs.Build.outputs.gitversion_semver }}
+          message: ${{ needs.Build.outputs.gitversion_semver }}
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
