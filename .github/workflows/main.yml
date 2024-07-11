@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest    
 
     steps:
-    - name: Checkout code
+    - name: Checkout codegit v
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -51,9 +51,9 @@ jobs:
     needs: Build
     runs-on: windows-latest
 
-    env:
-      GROWLER_PACKAGES_JSON: ${{ secrets.GROWLER_PACKAGES_JSON }}
-      GROWLER_GITHUB_PAT: ${{ secrets.GROWLER_GITHUB_PAT }}
+    # env:
+    #   GROWLER_PACKAGES_JSON: ${{ secrets.GROWLER_PACKAGES_JSON }}
+    #   GROWLER_GITHUB_PAT: ${{ secrets.GROWLER_GITHUB_PAT }}
 
     steps:
 
@@ -70,10 +70,10 @@ jobs:
       run: dir artifacts
 
     - name: show packages json
-      run: echo "$GROWLER_PACKAGES_JSON"
+      run: echo ${{ secrets.GROWLER_PACKAGES_JSON }}
     
     - name: Deploy to GitHub Packages      
-      run: dotnet nuget push ./artifacts/*.nupkg  --api-key "$GROWLER_GITHUB_PAT" --source "$GROWLER_PACKAGES_JSON"
+      run: dotnet nuget push ./artifacts/*.nupkg  --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
 
     - name: Deploy to NuGet.org
       run: dir
