@@ -88,9 +88,11 @@ jobs:
         path: ./artifacts
 
   Prepare_Release:
+    needs: Build
     runs-on: windows-latest
     outputs:
       commit_messages: ${{ steps.commit_messages.outputs.messages }}
+      gitversion_semver: ${{ steps.gitversion.outputs.semver }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.7
@@ -105,32 +107,44 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
   Create_Release:
-    needs: [Build, Prepare_Release]
+    needs: Prepare_Release
     runs-on: windows-latest
     steps:
       - name: Display Version number
-        run: echo "version ${{ needs.Build.outputs.gitversion_semver }}"
+        run: echo "version ${{ needs.Prepare_Release.outputs.gitversion_semver }}"
 
       - name: Create Tag
         uses: negz/create-tag@v1
         with:
-          version: ${{ needs.Build.outputs.gitversion_semver }}
-          message: ${{ needs.Build.outputs.gitversion_semver }}
+          token: ${{ secrets.GHUB_PAT }}
+          version: ${{ needs.Prepare_Release.outputs.gitversion_semver }}
+          message: ${{ needs.Prepare_Release.outputs.gitversion_semver }}
 
       - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ needs.Build.outputs.gitversion_semver }}
-          release_name: ${{ needs.Build.outputs.gitversion_semver }}
-          draft: false
-          prerelease: false
+          tag: ${{ needs.Prepare_Release.outputs.gitversion_semver }}
+          # artifacts: "release.tar.gz,foo/*.txt"
           body: |
             Description of the release
 
             Commit Messages:
             ${{ needs.Prepare_Release.outputs.commit_messages }}
+
+      # - name: Create GitHub Release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ needs.Build.outputs.gitversion_semver }}
+      #     release_name: ${{ needs.Build.outputs.gitversion_semver }}
+      #     draft: false
+      #     prerelease: false
+      #     body: |
+      #       Description of the release
+
+      #       Commit Messages:
+      #       ${{ needs.Prepare_Release.outputs.commit_messages }}
           
   # Tag_Repo:
   #   needs: Build
