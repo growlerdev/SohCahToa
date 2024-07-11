@@ -65,7 +65,7 @@ jobs:
         shopt -s globstar
         for PACKAGE_FILE in ./artifacts/*.nupkg; do
           echo "Pushing $PACKAGE_FILE"
-          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
         done
 
   Deploy_NuGet-org:
