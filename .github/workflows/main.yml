@@ -91,7 +91,7 @@ jobs:
     steps:
 
       - name: Display Version number
-        run: echo "version $gitversion_semer"
+        run: echo "version ${{ needs.build.outputs.gitversion_semver }}"
 
       - name: Create Tag
         # You may pin to the exact commit or the version.
