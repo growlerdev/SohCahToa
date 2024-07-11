@@ -128,12 +128,13 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ needs.Prepare_Release.outputs.gitversion_semver }}
+          generateReleaseNotes: true
           # artifacts: "release.tar.gz,foo/*.txt"
-          body: |
-            Description of the release
+          # body: |
+          #   Description of the release
 
-            Commit Messages:
-            ${{ needs.Prepare_Release.outputs.commit_messages }}
+          #   Commit Messages:
+          #   ${{ needs.Prepare_Release.outputs.commit_messages }}
 
       # - name: Create GitHub Release
       #   uses: actions/create-release@v1
