@@ -49,7 +49,10 @@ jobs:
         name: nuget
         path: ./artifacts/*.nupkg
         retention-days: 1
-        overwrite: true          
+        overwrite: true
+
+    - name: Echo GitVersion SemVer
+      run: echo "GitVersion SemVer is ${{ steps.gitversion.outputs.semver }}"
         
   Deploy_GitHub_Packages:
     needs: Build
