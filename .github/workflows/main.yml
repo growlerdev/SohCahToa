@@ -31,25 +31,25 @@ jobs:
       id: gitversion
       uses: gittools/actions/gitversion/execute@v1.2.0
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2.0.0
+    # - name: Setup NuGet
+    #   uses: NuGet/setup-nuget@v2.0.0
 
-    - name: NuGet restore
-      run: nuget restore
+    # - name: NuGet restore
+    #   run: nuget restore
       
-    - name: Build DotNet
-      run: dotnet build -c Release           
+    # - name: Build DotNet
+    #   run: dotnet build -c Release           
 
-    - name: Pack Projects
-      run: dotnet pack --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
+    # - name: Pack Projects
+    #   run: dotnet pack --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
 
-    - name: Publish Build Artifacts
-      uses: actions/upload-artifact@v4.3.4
-      with:
-        name: nuget
-        path: ./artifacts/*.nupkg
-        retention-days: 1
-        overwrite: true
+    # - name: Publish Build Artifacts
+    #   uses: actions/upload-artifact@v4.3.4
+    #   with:
+    #     name: nuget
+    #     path: ./artifacts/*.nupkg
+    #     retention-days: 1
+    #     overwrite: true
 
     - name: Echo GitVersion SemVer
       run: echo "GitVersion SemVer is ${{ steps.gitversion.outputs.semver }}"
@@ -92,7 +92,7 @@ jobs:
     runs-on: windows-latest
     outputs:
       commit_messages: ${{ steps.commit_messages.outputs.messages }}
-      gitversion_semver: ${{ steps.Build.gitversion.outputs.semver }}
+      gitversion_semver: ${{ needs.Build.gitversion.outputs.semver }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.7
