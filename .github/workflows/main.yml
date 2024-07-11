@@ -59,7 +59,7 @@ jobs:
       uses: actions/download-artifact@v4.1.8
       with:
         # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
-        name: "drop"
+        # name: "drop"
         # Destination path. Supports basic tilde expansion. Defaults to $GITHUB_WORKSPACE
         path: ./artifacts
         # A glob pattern matching the artifacts that should be downloaded. Ignored if name is specified.
@@ -80,7 +80,7 @@ jobs:
       run: dir artifacts
     
     - name: Deploy to GitHub Packages      
-      run: dotnet nuget push "artifacts\drop\*.nupkg"  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
+      run: dotnet nuget push "artifacts\*.nupkg"  --api-key $GROWLER_GITHUB_PAT --source $GROWLER_PACKAGES_JSON
 
     - name: Deploy to NuGet.org
       run: dir
