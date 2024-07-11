@@ -1,0 +1,122 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - release/*
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch: #option to manually trigger action
+
+permissions:
+  contents: write
+      
+jobs:
+        
+  Build:
+    # if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+    runs-on: windows-latest
+
+    outputs:
+      gitversion_semver: ${{ steps.gitversion.outputs.semver }}
+      gitversion_nugetversion: ${{ steps.gitversion.outputs.nugetversion }}
+
+    steps:
+    - name: Checkout codegit v
+      uses: actions/checkout@v4.1.7
+      with:
+        fetch-depth: 0
+
+    - name: Setup GitVersion
+      uses: gittools/actions/gitversion/setup@v1.2.0
+      with:
+        versionSpec: '5.x'
+
+    - name: Execute GitVersion
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v1.2.0
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2.0.0
+
+    - name: NuGet restore
+      run: nuget restore
+      
+    - name: Build DotNet
+      run: dotnet build -c Release           
+
+    - name: Pack Projects
+      run: dotnet pack --output artifacts --configuration Release /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }}
+
+    - name: Publish Build Artifacts
+      uses: actions/upload-artifact@v4.3.4
+      with:
+        name: nuget
+        path: ./artifacts/*.nupkg
+        retention-days: 1
+        overwrite: true
+        
+  Deploy_GitHub_Packages:
+    needs: Build
+    runs-on: windows-latest
+    
+    steps:
+
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+        name: nuget
+        path: ./artifacts
+
+    - name: Push NuGet Packages
+      shell: bash
+      run: |
+        shopt -s globstar
+        for PACKAGE_FILE in ./artifacts/*.nupkg; do
+          echo "Pushing $PACKAGE_FILE"
+          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+        done
+
+  Deploy_NuGet-org:
+    needs: Build
+    runs-on: windows-latest
+    
+    steps:
+
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+        name: nuget
+        path: ./artifacts
+
+    - name: Push NuGet Packages
+      shell: bash
+      run: |
+        shopt -s globstar
+        for PACKAGE_FILE in ./artifacts/*.nupkg; do
+          echo "Pushing $PACKAGE_FILE"
+          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GROWLER_NUGETORG_API_KEY }} --source "https://api.nuget.org/v3/index.json"
+        done
+
+  Create_Release:
+    needs: Build
+    runs-on: windows-latest
+    steps:
+      - name: Display Version number
+        run: echo "version ${{ needs.Build.outputs.gitversion_semver }}"
+
+      - name: Create Tag
+        uses: negz/create-tag@v1
+        with:
+          token: ${{ secrets.GHUB_PAT }}
+          version: ${{ needs.Build.outputs.gitversion_semver }}
+          message: ${{ needs.Build.outputs.gitversion_semver }}
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ needs.Build.outputs.gitversion_semver }}
+          generateReleaseNotes: true
