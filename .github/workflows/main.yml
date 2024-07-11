@@ -60,11 +60,12 @@ jobs:
         path: ./artifacts
 
     - name: Push NuGet Packages
+      shell: bash
       run: |
-        # Find all .nupkg files in artifacts directory
-        for PACKAGE_FILE in $(find ./artifacts -name "*.nupkg"); do
+        shopt -s globstar
+        for PACKAGE_FILE in ./artifacts/*.nupkg; do
           echo "Pushing $PACKAGE_FILE"
-          dotnet nuget push $PACKAGE_FILE --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
+          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.GROWLER_GITHUB_PAT }} --source ${{ secrets.GROWLER_PACKAGES_JSON }}
         done
 
   Deploy_NuGet-org:
