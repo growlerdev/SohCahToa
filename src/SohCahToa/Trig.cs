@@ -18,6 +18,7 @@ namespace SohCahToa
         {
             return run * Math.Tan(ToRadians(primaryAngle));
         }
+        public static double a_bAA(double b, double AA) => Rise_RunPrimaryAngle(b, AA);
 
         /// <summary>
         /// Calculates the length of the side opposite to the primary angle (rise) given the hypotenuse and the primary angle.
@@ -29,6 +30,7 @@ namespace SohCahToa
         {
             return hypotenuse * Math.Sin(ToRadians(primaryAngle));
         }
+        public static double a_cAA(double c, double AA) => Rise_HypotenusePrimaryAngle(c, AA);
 
         /// <summary>
         /// Calculates the length of the side opposite to the complimentary angle (rise) given the adjacent side (run) and the complimentary angle.
@@ -40,6 +42,7 @@ namespace SohCahToa
         {
             return run / Math.Tan(ToRadians(complimentaryAngle));
         }
+        public static double a_bBB(double b, double BB) => Rise_RunComplimentaryAngle(b, BB);
 
         /// <summary>
         /// Calculates the length of the side opposite to the complimentary angle (rise) given the hypotenuse and the complimentary angle.
@@ -51,6 +54,7 @@ namespace SohCahToa
         {
             return hypotenuse * Math.Cos(ToRadians(complimentaryAngle));
         }
+        public static double a_cBB(double c, double BB) => Rise_HypotenuseComplimentaryAngle(c, BB);
 
         /// <summary>
         /// Calculates the length of the side opposite to the primary angle (rise) given the adjacent side (run) and the hypotenuse.
@@ -62,6 +66,7 @@ namespace SohCahToa
         {
             return Math.Sqrt(Math.Pow(hypotenuse, 2) - Math.Pow(run, 2));
         }
+        public static double a_bc(double b, double c) => Rise_RunHypotenuse(b, c);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the primary angle.
@@ -73,6 +78,7 @@ namespace SohCahToa
         {
             return rise / Math.Tan(ToRadians(primaryAngle));
         }
+        public static double b_aAA(double a, double AA) => Run_RisePrimaryAngle(a, AA);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the hypotenuse and the primary angle.
@@ -84,6 +90,7 @@ namespace SohCahToa
         {
             return hypotenuse * Math.Cos(ToRadians(primaryAngle));
         }
+        public static double b_cAA(double c, double AA) => Run_HypotenusePrimaryAngle(c, AA);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the complimentary angle.
@@ -95,6 +102,7 @@ namespace SohCahToa
         {
             return rise * Math.Tan(ToRadians(complimentaryAngle));
         }
+        public static double b_aBB(double a, double BB) => Run_RiseComplimentaryAngle(a, BB);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the hypotenuse and the complimentary angle.
@@ -106,6 +114,7 @@ namespace SohCahToa
         {
             return hypotenuse * Math.Sin(ToRadians(complimentaryAngle));
         }
+        public static double b_cBB(double c, double BB) => Run_HypotenuseComplimentaryAngle(c, BB);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the hypotenuse.
@@ -117,6 +126,7 @@ namespace SohCahToa
         {
             return Math.Sqrt(Math.Pow(hypotenuse, 2) - Math.Pow(rise, 2));
         }
+        public static double b_ac(double a, double c) => Run_RiseHypotenuse(a, c);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the opposite side (rise) and the primary angle.
@@ -128,6 +138,7 @@ namespace SohCahToa
         {
             return rise / Math.Sin(ToRadians(primaryAngle));
         }
+        public static double c_aAA(double a, double AA) => Hypotenuse_RisePrimaryAngle(a, AA);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the adjacent side (run) and the primary angle.
@@ -139,6 +150,7 @@ namespace SohCahToa
         {
             return run / Math.Cos(ToRadians(primaryAngle));
         }
+        public static double c_bAA(double b, double AA) => Hypotenuse_RunPrimaryAngle(b, AA);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the opposite side (rise) and the complimentary angle.
@@ -150,6 +162,7 @@ namespace SohCahToa
         {
             return rise / Math.Cos(ToRadians(complimentaryAngle));
         }
+        public static double c_aBB(double a, double BB) => Hypotenuse_RiseComplimentaryAngle(a, BB);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the adjacent side (run) and the complimentary angle.
@@ -161,6 +174,7 @@ namespace SohCahToa
         {
             return run / Math.Sin(ToRadians(complimentaryAngle));
         }
+        public static double c_bBB(double b, double BB) => Hypotenuse_RunComplimentaryAngle(b, BB);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the lengths of the other two sides.
@@ -172,6 +186,7 @@ namespace SohCahToa
         {
             return Math.Sqrt(Math.Pow(rise, 2) + Math.Pow(run, 2));
         }
+        public static double c_ab(double a, double b) => Hypotenuse_RiseRun(a, b);
 
         /// <summary>
         /// Calculates the primary angle given the complimentary angle.
@@ -182,6 +197,7 @@ namespace SohCahToa
         {
             return 90 - complimentaryAngle;
         }
+        public static double AA_BB(double BB) => PrimaryAngle_ComplimentaryAngle(BB);
 
         /// <summary>
         /// Calculates the primary angle given the lengths of the opposite side (rise) and the adjacent side (run).
@@ -193,6 +209,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Atan(rise / run));
         }
+        public static double AA_ab(double a, double b) => PrimaryAngle_RiseRun(a, b);
 
         /// <summary>
         /// Calculates the primary angle given the length of the opposite side (rise) and the hypotenuse.
@@ -204,6 +221,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Asin(rise / hypotenuse));
         }
+        public static double AA_ac(double a, double c) => PrimaryAngle_RiseHypotenuse(a, c);
 
         /// <summary>
         /// Calculates the primary angle given the length of the adjacent side (run) and the hypotenuse.
@@ -215,6 +233,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Acos(run / hypotenuse));
         }
+        public static double AA_bc(double b, double c) => PrimaryAngle_RunHypotenuse(b, c);
 
         /// <summary>
         /// Calculates the complimentary angle given the primary angle.
@@ -225,6 +244,7 @@ namespace SohCahToa
         {
             return 90 - primaryAngle;
         }
+        public static double BB_AA(double AA) => ComplimentaryAngle_PrimaryAngle(AA);
 
         /// <summary>
         /// Calculates the complimentary angle given the lengths of the opposite side (rise) and the adjacent side (run).
@@ -236,6 +256,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Atan(run / rise));
         }
+        public static double BB_ab(double a, double b) => ComplimentaryAngle_RiseRun(a, b);
 
         /// <summary>
         /// Calculates the complimentary angle given the length of the opposite side (rise) and the hypotenuse.
@@ -247,6 +268,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Acos(rise / hypotenuse));
         }
+        public static double BB_ac(double a, double c) => ComplimentaryAngle_RiseHypotenuse(a, c);
 
         /// <summary>
         /// Calculates the complimentary angle given the length of the adjacent side (run) and the hypotenuse.
@@ -258,6 +280,7 @@ namespace SohCahToa
         {
             return ToDegrees(Math.Asin(run / hypotenuse));
         }
+        public static double BB_bc(double b, double c) => ComplimentaryAngle_RunHypotenuse(b, c);
 
         /// <summary>
         /// Converts an angle from degrees to radians.
