@@ -1,6 +1,10 @@
 # SohCahToa
 
-[![NuGet version (SohCahToa)](https://buildstats.info/nuget/SohCahToa)](https://www.nuget.org/packages/SohCahToa)
+![GitHub Release](https://img.shields.io/github/v/release/growlerdev/sohcahtoa?display_name=release&logo=github&label=release&link=https%3A%2F%2Fgithub.com%2Fgrowlerdev%2FSohCahToa%2Freleases)
+    ![GitHub Release](https://img.shields.io/github/v/release/growlerdev/sohcahtoa?include_prereleases&display_name=release&logo=github&label=latest%20build&link=https%3A%2F%2Fgithub.com%2Fgrowlerdev%2FSohCahToa%2Freleases)
+    ![NuGet Downloads](https://img.shields.io/nuget/dt/sohcahtoa?logo=nuget&color=9932CC)
+    ![GitHub License](https://img.shields.io/github/license/growlerdev/sohcahtoa?color=salmon)
+    ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/growlerdev/sohcahtoa/main.yml?logo=githubactions&logoColor=white&label=Build%20and%20Deploy&link=https%3A%2F%2Fgithub.com%2Fgrowlerdev%2FSohCahToa%2Factions%2Fworkflows%2Fbuild-deploy.yml)
 
 `SohCahToa` is a C# library designed to simplify trigonometric calculations with a focus on ease of use and precision.
 
