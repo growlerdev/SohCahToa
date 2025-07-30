@@ -33,28 +33,28 @@ namespace SohCahToa
         public static double a_cAA(double c, double AA) => Rise_HypotenusePrimaryAngle(c, AA);
 
         /// <summary>
-        /// Calculates the length of the side opposite to the complimentary angle (rise) given the adjacent side (run) and the complimentary angle.
+        /// Calculates the length of the side opposite to the complementary angle (rise) given the adjacent side (run) and the complementary angle.
         /// </summary>
-        /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="run">The length of the side adjacent to the complementary angle.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_RunComplimentaryAngle(double run, double complimentaryAngle)
+        public static double Rise_RunComplementaryAngle(double run, double complementaryAngle)
         {
-            return run / Math.Tan(ToRadians(complimentaryAngle));
+            return run / Math.Tan(ToRadians(complementaryAngle));
         }
-        public static double a_bBB(double b, double BB) => Rise_RunComplimentaryAngle(b, BB);
+        public static double a_bBB(double b, double BB) => Rise_RunComplementaryAngle(b, BB);
 
         /// <summary>
-        /// Calculates the length of the side opposite to the complimentary angle (rise) given the hypotenuse and the complimentary angle.
+        /// Calculates the length of the side opposite to the complementary angle (rise) given the hypotenuse and the complementary angle.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the opposite side (rise).</returns>
-        public static double Rise_HypotenuseComplimentaryAngle(double hypotenuse, double complimentaryAngle)
+        public static double Rise_HypotenuseComplementaryAngle(double hypotenuse, double complementaryAngle)
         {
-            return hypotenuse * Math.Cos(ToRadians(complimentaryAngle));
+            return hypotenuse * Math.Cos(ToRadians(complementaryAngle));
         }
-        public static double a_cBB(double c, double BB) => Rise_HypotenuseComplimentaryAngle(c, BB);
+        public static double a_cBB(double c, double BB) => Rise_HypotenuseComplementaryAngle(c, BB);
 
         /// <summary>
         /// Calculates the length of the side opposite to the primary angle (rise) given the adjacent side (run) and the hypotenuse.
@@ -93,28 +93,28 @@ namespace SohCahToa
         public static double b_cAA(double c, double AA) => Run_HypotenusePrimaryAngle(c, AA);
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the complimentary angle.
+        /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the complementary angle.
         /// </summary>
-        /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="rise">The length of the side opposite to the complementary angle.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_RiseComplimentaryAngle(double rise, double complimentaryAngle)
+        public static double Run_RiseComplementaryAngle(double rise, double complementaryAngle)
         {
-            return rise * Math.Tan(ToRadians(complimentaryAngle));
+            return rise * Math.Tan(ToRadians(complementaryAngle));
         }
-        public static double b_aBB(double a, double BB) => Run_RiseComplimentaryAngle(a, BB);
+        public static double b_aBB(double a, double BB) => Run_RiseComplementaryAngle(a, BB);
 
         /// <summary>
-        /// Calculates the length of the adjacent side (run) given the hypotenuse and the complimentary angle.
+        /// Calculates the length of the adjacent side (run) given the hypotenuse and the complementary angle.
         /// </summary>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the adjacent side (run).</returns>
-        public static double Run_HypotenuseComplimentaryAngle(double hypotenuse, double complimentaryAngle)
+        public static double Run_HypotenuseComplementaryAngle(double hypotenuse, double complementaryAngle)
         {
-            return hypotenuse * Math.Sin(ToRadians(complimentaryAngle));
+            return hypotenuse * Math.Sin(ToRadians(complementaryAngle));
         }
-        public static double b_cBB(double c, double BB) => Run_HypotenuseComplimentaryAngle(c, BB);
+        public static double b_cBB(double c, double BB) => Run_HypotenuseComplementaryAngle(c, BB);
 
         /// <summary>
         /// Calculates the length of the adjacent side (run) given the opposite side (rise) and the hypotenuse.
@@ -153,28 +153,28 @@ namespace SohCahToa
         public static double c_bAA(double b, double AA) => Hypotenuse_RunPrimaryAngle(b, AA);
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the opposite side (rise) and the complimentary angle.
+        /// Calculates the length of the hypotenuse given the opposite side (rise) and the complementary angle.
         /// </summary>
-        /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="rise">The length of the side opposite to the complementary angle.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RiseComplimentaryAngle(double rise, double complimentaryAngle)
+        public static double Hypotenuse_RiseComplementaryAngle(double rise, double complementaryAngle)
         {
-            return rise / Math.Cos(ToRadians(complimentaryAngle));
+            return rise / Math.Cos(ToRadians(complementaryAngle));
         }
-        public static double c_aBB(double a, double BB) => Hypotenuse_RiseComplimentaryAngle(a, BB);
+        public static double c_aBB(double a, double BB) => Hypotenuse_RiseComplementaryAngle(a, BB);
 
         /// <summary>
-        /// Calculates the length of the hypotenuse given the adjacent side (run) and the complimentary angle.
+        /// Calculates the length of the hypotenuse given the adjacent side (run) and the complementary angle.
         /// </summary>
-        /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="run">The length of the side adjacent to the complementary angle.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The length of the hypotenuse.</returns>
-        public static double Hypotenuse_RunComplimentaryAngle(double run, double complimentaryAngle)
+        public static double Hypotenuse_RunComplementaryAngle(double run, double complementaryAngle)
         {
-            return run / Math.Sin(ToRadians(complimentaryAngle));
+            return run / Math.Sin(ToRadians(complementaryAngle));
         }
-        public static double c_bBB(double b, double BB) => Hypotenuse_RunComplimentaryAngle(b, BB);
+        public static double c_bBB(double b, double BB) => Hypotenuse_RunComplementaryAngle(b, BB);
 
         /// <summary>
         /// Calculates the length of the hypotenuse given the lengths of the other two sides.
@@ -189,15 +189,15 @@ namespace SohCahToa
         public static double c_ab(double a, double b) => Hypotenuse_RiseRun(a, b);
 
         /// <summary>
-        /// Calculates the primary angle given the complimentary angle.
+        /// Calculates the primary angle given the complementary angle.
         /// </summary>
-        /// <param name="complimentaryAngle">The complimentary angle in degrees.</param>
+        /// <param name="complementaryAngle">The complementary angle in degrees.</param>
         /// <returns>The primary angle in degrees.</returns>
-        public static double PrimaryAngle_ComplimentaryAngle(double complimentaryAngle)
+        public static double PrimaryAngle_ComplementaryAngle(double complementaryAngle)
         {
-            return 90 - complimentaryAngle;
+            return 90 - complementaryAngle;
         }
-        public static double AA_BB(double BB) => PrimaryAngle_ComplimentaryAngle(BB);
+        public static double AA_BB(double BB) => PrimaryAngle_ComplementaryAngle(BB);
 
         /// <summary>
         /// Calculates the primary angle given the lengths of the opposite side (rise) and the adjacent side (run).
@@ -236,51 +236,51 @@ namespace SohCahToa
         public static double AA_bc(double b, double c) => PrimaryAngle_RunHypotenuse(b, c);
 
         /// <summary>
-        /// Calculates the complimentary angle given the primary angle.
+        /// Calculates the complementary angle given the primary angle.
         /// </summary>
         /// <param name="primaryAngle">The primary angle in degrees.</param>
-        /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_PrimaryAngle(double primaryAngle)
+        /// <returns>The complementary angle in degrees.</returns>
+        public static double ComplementaryAngle_PrimaryAngle(double primaryAngle)
         {
             return 90 - primaryAngle;
         }
-        public static double BB_AA(double AA) => ComplimentaryAngle_PrimaryAngle(AA);
+        public static double BB_AA(double AA) => ComplementaryAngle_PrimaryAngle(AA);
 
         /// <summary>
-        /// Calculates the complimentary angle given the lengths of the opposite side (rise) and the adjacent side (run).
+        /// Calculates the complementary angle given the lengths of the opposite side (rise) and the adjacent side (run).
         /// </summary>
-        /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
-        /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
-        /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RiseRun(double rise, double run)
+        /// <param name="rise">The length of the side opposite to the complementary angle.</param>
+        /// <param name="run">The length of the side adjacent to the complementary angle.</param>
+        /// <returns>The complementary angle in degrees.</returns>
+        public static double ComplementaryAngle_RiseRun(double rise, double run)
         {
             return ToDegrees(Math.Atan(run / rise));
         }
-        public static double BB_ab(double a, double b) => ComplimentaryAngle_RiseRun(a, b);
+        public static double BB_ab(double a, double b) => ComplementaryAngle_RiseRun(a, b);
 
         /// <summary>
-        /// Calculates the complimentary angle given the length of the opposite side (rise) and the hypotenuse.
+        /// Calculates the complementary angle given the length of the opposite side (rise) and the hypotenuse.
         /// </summary>
-        /// <param name="rise">The length of the side opposite to the complimentary angle.</param>
+        /// <param name="rise">The length of the side opposite to the complementary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
-        /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RiseHypotenuse(double rise, double hypotenuse)
+        /// <returns>The complementary angle in degrees.</returns>
+        public static double ComplementaryAngle_RiseHypotenuse(double rise, double hypotenuse)
         {
             return ToDegrees(Math.Acos(rise / hypotenuse));
         }
-        public static double BB_ac(double a, double c) => ComplimentaryAngle_RiseHypotenuse(a, c);
+        public static double BB_ac(double a, double c) => ComplementaryAngle_RiseHypotenuse(a, c);
 
         /// <summary>
-        /// Calculates the complimentary angle given the length of the adjacent side (run) and the hypotenuse.
+        /// Calculates the complementary angle given the length of the adjacent side (run) and the hypotenuse.
         /// </summary>
-        /// <param name="run">The length of the side adjacent to the complimentary angle.</param>
+        /// <param name="run">The length of the side adjacent to the complementary angle.</param>
         /// <param name="hypotenuse">The length of the hypotenuse.</param>
-        /// <returns>The complimentary angle in degrees.</returns>
-        public static double ComplimentaryAngle_RunHypotenuse(double run, double hypotenuse)
+        /// <returns>The complementary angle in degrees.</returns>
+        public static double ComplementaryAngle_RunHypotenuse(double run, double hypotenuse)
         {
             return ToDegrees(Math.Asin(run / hypotenuse));
         }
-        public static double BB_bc(double b, double c) => ComplimentaryAngle_RunHypotenuse(b, c);
+        public static double BB_bc(double b, double c) => ComplementaryAngle_RunHypotenuse(b, c);
 
         /// <summary>
         /// Converts an angle from degrees to radians.
