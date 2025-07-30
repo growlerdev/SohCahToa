@@ -25,7 +25,7 @@
 
 - **High Precision Calculations**: Utilize double precision (`Trig`) or single precision (`TrigF`) for trigonometric operations.
 - **Static Methods**: Direct access to trigonometric calculations without needing to instantiate classes.
-- **Comprehensive Coverage**: Methods for calculating side lengths, primary and complimentary angles in right triangles.
+- **Comprehensive Coverage**: Methods for calculating side lengths, primary and complementary angles in right triangles.
 - **Ease of Use**: Intuitive method naming convention for quick understanding and implementation.
 
 ## Installation
@@ -52,7 +52,7 @@ Console.WriteLine($"Rise: {rise}");
 ### `Trig` Class
 
 - **Double Precision**: For applications requiring high accuracy.
-- Methods include `Rise_RunPrimaryAngle`, `PrimaryAngle_RiseRun`, `ComplimentaryAngle_PrimaryAngle`, etc.
+- Methods include `Rise_RunPrimaryAngle`, `PrimaryAngle_RiseRun`, `ComplementaryAngle_PrimaryAngle`, etc.
 
 ### `TrigF` Class
 
